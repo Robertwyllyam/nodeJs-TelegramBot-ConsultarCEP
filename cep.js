@@ -1,4 +1,4 @@
-const token = "5613053826:AAHGStZ_oypjCaq8J2EwBcAlnwsj_NQG_ng";
+const token = "yourTokenHere";
 const baseUrl = "https://viacep.com.br/ws/";
 import { Telegraf, Composer, Scenes, Markup, session } from "telegraf";
 import fetch from "node-fetch";
@@ -16,6 +16,12 @@ cepHandler.hears(/^[0-9]{5}-[0-9]{3}$/, (ctx) => {
   ctx.wizard.next();
 
   return ctx.wizard.steps[ctx.wizard.cursor](ctx);
+});
+
+cepHandler.command("sair", async (ctx) => {
+  await ctx.reply("Tudo bem, fico feliz de ter sido útil para você.");
+  await ctx.reply("Se quiser fazer mais buscas, estarei aqui te esperando :)");
+  ctx.scene.leave();
 });
 
 cepHandler.use(async (ctx) => {
@@ -58,6 +64,9 @@ const cepScene = new Scenes.WizardScene(
 
     await ctx.reply(responseText);
     await ctx.reply("Fique à vontade para digitar mais algum CEP...");
+    await ctx.reply(
+      "Ou digita o comando /sair que eu paro de fazer as buscas, se você quiser."
+    );
     ctx.wizard.back();
   }
 );
@@ -75,7 +84,12 @@ bot.command("sobre", async (ctx) => {
   await ctx.reply(
     'Aqui usamos o conceito de consumo de api por meio de fetch, usando promises. Além de usar o módulo "Telegraf" para o Telegram.'
   );
-  await ctx.replyWithHTML(`<a href='https://google.com'>Teste</a>`);
+  await ctx.replyWithHTML(
+    `<a href='https://github.com/Robertwyllyam'>GitHub</a>`
+  );
+  await ctx.replyWithHTML(
+    `<a href='https://www.linkedin.com/in/robert-wyllyam-334a83a3/'>Linkedin</a>`
+  );
 });
 bot.use((ctx) => {
   const first_name = ctx.update.message.from.first_name;
