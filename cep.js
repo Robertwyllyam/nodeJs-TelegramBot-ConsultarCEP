@@ -1,4 +1,4 @@
-const token = "5613053826:AAHGStZ_oypjCaq8J2EwBcAlnwsj_NQG_ng";
+const token = "your_token";
 const baseUrl = "https://viacep.com.br/ws/";
 import { Telegraf, Composer, Scenes, Markup, session } from "telegraf";
 import fetch from "node-fetch";
