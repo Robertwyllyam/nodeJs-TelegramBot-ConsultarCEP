@@ -1,4 +1,4 @@
-const token = "yourTokenHere";
+const token = "your_token";
 const baseUrl = "https://viacep.com.br/ws/";
 import { Telegraf, Composer, Scenes, Markup, session } from "telegraf";
 import fetch from "node-fetch";
